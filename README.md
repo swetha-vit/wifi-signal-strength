@@ -1,54 +1,60 @@
-WiFi Signal Strength Visualizer
+````markdown
+# WiFi Signal Strength Visualizer
 
-A Flask application that scans available Wi-Fi networks, visualizes their channel distribution, and reports channel occupancy.
+A Flask-based web application that scans nearby WiFi networks, visualizes channel distribution across the 2.4 GHz and 5 GHz bands, and reports channel occupancy statistics.
 
-Overview
+## Overview
 
-This project uses PyWiFi to scan wireless networks and Matplotlib to generate real-time plots of Wi-Fi channel activity. The server runs a background thread to continuously scan and update channel usage, and exposes simple HTTP endpoints for control and status retrieval.
+This project uses PyWiFi to scan available wireless networks and Matplotlib to generate real-time channel distribution plots. A background thread continuously updates scan results while the web interface provides control and status endpoints.
 
-Features
+## Features
 
-Scans Wi-Fi networks and extracts SSID, frequency, and signal data.
+- Real-time WiFi scanning  
+- Separate visualization for 2.4 GHz and 5 GHz bands  
+- Gaussian-based channel distribution plotting  
+- Channel occupancy statistics  
+- Start/stop control via HTTP endpoints  
 
-Separates and visualizes 2.4 GHz and 5 GHz bands on a single plot.
+## Requirements
 
-Computes and reports channel occupancy statistics.
+- Python 3.8 or higher  
+- Flask  
+- PyWiFi  
+- NumPy  
+- Matplotlib  
+- WiFi adapter that supports scanning (administrator/root privileges may be required)
 
-Provides a web interface with endpoints to start/stop scanning and retrieve results.
+## Installation
 
-Requirements
-
-Python 3.8 or higher
-
-Dependencies: Flask, PyWiFi, NumPy, Matplotlib
-
-A Wi-Fi adapter that supports scanning (administrator/root privileges may be required)
-
-Installation
+```bash
 git clone https://github.com/swetha-vit/wifi-signal-strength.git
 cd wifi-signal-strength
 pip install flask pywifi numpy matplotlib
-Usage
+````
+
+## Usage
+
+```bash
 python app.py
+```
 
-Open your browser and navigate to:
+Open a browser and navigate to:
 
+```
 http://localhost:5000
+```
 
-Use the provided UI to start scanning, view the generated plot, and check status.
+## API Endpoints
 
-Endpoints
+* `GET /` – Home page
+* `POST /start` – Start WiFi scanning
+* `POST /stop` – Stop WiFi scanning
+* `GET /status` – Retrieve channel occupancy data
+* `GET /plot` – Retrieve the latest generated plot
 
-GET / — Home page
-
-POST /start — Start scanning
-
-POST /stop — Stop scanning
-
-GET /status — Return channel occupancy text
-
-GET /plot — Return generated plot image
-
-License
+## License
 
 MIT License
+
+```
+```
