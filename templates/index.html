@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control Button</title>
+</head>
+<body>
+
+<button
+    onmousedown="fetch('/start', {method: 'POST'})"
+    onmouseup="fetch('/stop', {method: 'POST'})"
+>
+    FIND CHANNEL OCCUPANCY
+</button>
+<img id="plot" src="/plot">
+<pre id="text"></pre>
+<script>
+setInterval(() => {
+    document.getElementById("plot").src = "/plot?" + Date.now();
+
+    fetch("/status")
+        .then(r => r.text())
+        .then(t => document.getElementById("text").innerText = t);
+}, 1000);
+</script>
+
+
+</body>
+</html>
